@@ -94,6 +94,20 @@
          self.events.splice(index, 1);
       };
 
+      /* Change View */
+      self.changeView = function (view, calendar) {
+         uiCalendarConfig.calendars[calendar].fullCalendar('changeView', view);
+      };
+
+      /* Change View */
+      self.renderCalender = function (calendar) {
+         $timeout(function () {
+            if (uiCalendarConfig.calendars[calendar]) {
+               uiCalendarConfig.calendars[calendar].fullCalendar('render');
+            }
+         });
+      };
+
       /* config object */
       self.uiConfig = {
          calendar: {
