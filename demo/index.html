@@ -24,6 +24,10 @@
                   <h3>Why?</h3>
 
                   <p>Why Not?</p>
+                  <div>
+                     <button ng-click="handleAuthClick()" style="visibility: hidden">Authorize</button>
+
+                  </div>
 
                   <div class="btn-group calTools">
                      <button class="btn" ng-click="addRemoveEventSource(eventSources,eventSource)">
@@ -63,6 +67,8 @@
          </div>
       </section>
    </div>
+</div>
+<script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
    <script src="../bower_components/jquery/dist/jquery.js"></script>
    <script src="../bower_components/angular/angular.js"></script>
    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
@@ -72,5 +78,6 @@
    <script src="../src/calendar.js"></script>
    <script src="calendarDemo.js"></script>
    <script type="text/javascript" src="../bower_components/fullcalendar/dist/lang-all.js"></script>
+
 </body>
 </html>

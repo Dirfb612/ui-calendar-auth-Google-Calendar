@@ -10,22 +10,108 @@
 
    CalendarCtrl.$inject = ['$scope', '$compile', '$timeout', 'uiCalendarConfig'];
 
-   function CalendarCtrl($scope, $compile, $timeout, uiCalendarConfig) {
+   function CalendarCtrl($scope, $compile, $timeout, uiCalendarConfig, $log) {
 
       var date = new Date(),
          d = date.getDate(),
          m = date.getMonth(),
+         eventsList = [],
          y = date.getFullYear();
+
 
       //$scope.changeTo = 'Hungarian';
       /* event source that pulls from google.com */
-      $scope.eventSource = {
-         googleCalendarApiKey: 'AIzaSyDvbmZLQjDm_qrkvpUl1kTTMhDnpokNmrI',
-         url: "https://www.google.com/calendar/feeds/qv8rv593gn5g8pumu0bid6bco0%40group.calendar.google.com/public/basic",
-         className: 'gcal-event',           // an option!
-         currentTimezone: 'America/Bogota', // an option!
-         color: 'red'
+      /*   $scope.eventSource = {
+       googleCalendarApiKey: 'AIzaSyDvbmZLQjDm_qrkvpUl1kTTMhDnpokNmrI',
+       //url: "https://www.google.com/calendar/feeds/qv8rv593gn5g8pumu0bid6bco0%40group.calendar.google.com/public/basic",
+       //  url: "https://www.google.com/calendar/feeds/3jga9d7ljn5j54ukbhkbpmimuo%40group.calendar.google.com/public/basic",
+       url: "https://www.google.com/calendar/feeds/3jga9d7ljn5j54ukbhkbpmimuo%40group.calendar.google.com/public/basic",
+
+       className: 'gcal-event',           // an option!
+       currentTimezone: 'America/Bogota', // an option!
+       color: 'red'
+       };*/
+      var apiKey = 'AIzaSyDvbmZLQjDm_qrkvpUl1kTTMhDnpokNmrI';
+      var clientId = '1020443454327-r6ev6jep74mtqb1pp9aentg75v1l5j4n.apps.googleusercontent.com';
+      var scopes = 'https://www.googleapis.com/auth/calendar';
+      //handleAuthResult();
+
+      function checkAuth() {
+                  
+         console.log('--- entro ---');
+         console.log();
+         
+         gapi.auth.authorize(
+            {
+            
+               'client_id': clientId,
+               'scope': scopes,
+               'immediate': true
+            }, handleAuthResult);
+      }
+
+      function handleAuthResult(authResult) {
+         console.log(authResult);
+         var authorizeButton = document.getElementById('authorize-button');
+         if (authResult && !authResult.error) {
+            authorizeButton.style.visibility = 'hidden';
+            makeApiCall();
+            console.log('--- entro!!! ---');
+            console.log();
+
+         } else {
+            authorizeButton.style.visibility = '';
+            authorizeButton.onclick = handleAuthClick;
+         }
+      }
+
+
+      $scope.handleAuthClick = function (event) {
+         gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, handleAuthResult);
+         return false;
       };
+
+      function makeApiCall() {
+         gapi.client.load('calendar', 'v3', function () {
+            var request = gapi.client.calendar.calendarList.list();
+            request.execute(function (resp) {
+
+               $.each(resp.items, function (key, value) {
+                  console.log(resp.items[key].id);
+               });
+            });
+            var request1 = gapi.client.calendar.events.list({
+               'calendarId': 'qv8rv593gn5g8pumu0bid6bco0@group.calendar.google.com'
+            });
+            request1.execute(function (resp) {
+
+               console.log('--- entro ---');
+               console.log();
+
+               //var eventsList = [];
+
+
+               $.each(resp.items, function (key, value) {
+                  //   console.log(resp.items[key].id);// here you give all events from google calendar
+
+
+                  var url = value.htmlLink;
+
+                  eventsList.push({
+                     id: value.id,
+                     title: value.summary,
+                     start: value.start.dateTime || value.start.date, // try timed. will fall back to all-day
+                     end: value.end.dateTime || value.end.date, // same
+                     url: url,
+                     location: value.location,
+                     description: value.description
+                  });
+
+               });
+
+            });
+         });
+      }
 
       /* event source that contains custom events on the scope */
       $scope.events = [
@@ -255,8 +341,8 @@
       };
 
       /* event sources array*/
-      $scope.eventSources = [$scope.events, $scope.eventSource, $scope.eventsF];
-      $scope.eventSources2 = [$scope.calEventsExt, $scope.eventsF, $scope.events];
+      $scope.eventSources = [$scope.events, $scope.eventsF, eventsList];
+      //  $scope.eventSources2 = [$scope.calEventsExt, $scope.eventsF, $scope.events];
    }
 }());
 /* EOF */

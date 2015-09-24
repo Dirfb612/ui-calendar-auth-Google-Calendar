@@ -22,12 +22,15 @@
       /* event source that pulls from google.com */
       self.eventSource = {
          googleCalendarApiKey: 'AIzaSyDvbmZLQjDm_qrkvpUl1kTTMhDnpokNmrI',
-         url: "https://www.google.com/calendar/feeds/qv8rv593gn5g8pumu0bid6bco0%40group.calendar.google.com/public/basic",
+         url: "https://www.google.com/calendar/feeds/3jga9d7ljn5j54ukbhkbpmimuo%40group.calendar.google.com/public/basic",
          className: 'gcal-event',           // an option!
          currentTimezone: 'America/Bogota', // an option!
-         color: 'red',
+         color: 'red'
 
       };
+
+      console.log('--- self.eventSource ---');
+      console.log(self.eventSource);
 
 
       /* alert on eventClick */
@@ -108,6 +111,17 @@
          });
       };
 
+      self.events = [
+         {title: 'All Day Event',start: new Date('Thu Oct 17 2015 09:00:00 GMT+0530 (IST)')},
+         {title: 'Long Event',start: new Date('Thu Oct 17 2013 10:00:00 GMT+0530 (IST)'),end: new Date('Thu Oct 17 2015 17:00:00 GMT+0530 (IST)')},
+         {id: 999,title: 'Repeating Event',start: new Date('Thu Oct 15 2013 09:00:00 GMT+0530 (IST)'),allDay: false},
+         {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
+         {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
+         {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
+      ];
+      console.log('--- events ---');
+      console.log(self.events);
+
       /* config object */
       self.uiConfig = {
          calendar: {
@@ -128,7 +142,8 @@
             eventDrop: self.alertOnDrop,
             eventResize: self.alertOnResize,
             eventRender: self.eventRender,
-            select:self.addEvent,
+            select:self.addEvent
+
           //  eventClick: self.addRemoveEventSource
       }
       };
