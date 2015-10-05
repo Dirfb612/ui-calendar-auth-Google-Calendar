@@ -5,9 +5,9 @@
       .module('calendarDemoApp', ['ui.calendar', 'ui.bootstrap'])
       .controller('CalendarCtrl', CalendarCtrl);
 
-   CalendarCtrl.$inject = ['$scope', '$compile', '$timeout', 'uiCalendarConfig', '$modal', '$log', '$filter', 'calendarFactory'];
+   CalendarCtrl.$inject = ['calendarFactory'];
 
-   function CalendarCtrl($scope, $compile, $timeout, uiCalendarConfig, $modal, $log, $filter, calendarFactory) {
+   function CalendarCtrl(calendarFactory) {
 
       var self = this,
       //Global variables to access the calendar
@@ -55,7 +55,7 @@
       }
 
       //Start Events
-      function addEvent(start, end){
+      function addEvent(start, end) {
          var title = prompt('Event Title:');
          self.events.push({
             title: title,
@@ -66,20 +66,18 @@
             className: ['openSesame']
          });
 
-          self.eventData = {
-          "colorId": 10,
-          "summary": title,
-          "location": "Somewhere",
-          "start": {
-          "date": start.format()
-          },
-          "end": {
-          "date": end.format()
-          }
-          };
+         self.eventData = {
+            "colorId": 10,
+            "summary": title,
+            "location": "Somewhere",
+            "start": {
+               "date": start.format()
+            },
+            "end": {
+               "date": end.format()
+            }
+         };
          calendarFactory.makeRpcRequest(self.eventData);
-         console.log('--- entro tarea ---');
-         console.log(self.eventData);
 
       }
 
@@ -107,8 +105,6 @@
             select: addEvent
          }
       };
-
-
 
       self.eventSources = [self.events];
    }
