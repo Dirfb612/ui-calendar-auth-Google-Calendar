@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="calendarDemoApp" id="top">
+<head>
+   <meta charset="UTF-8">
+   <title>AngularUI Calendar for AngularJS</title>
+   <link rel="icon" href="favicon.ico"/>
+   <link rel="stylesheet" href="../bower_components/bootstrap-css/css/bootstrap.css"/>
+   <link rel="stylesheet" href="../bower_components/fullcalendar/dist/fullcalendar.css">
+   <link rel="stylesheet" href="examples/calendarDemo.css"/>
+</head>
+<body data-spy="scroll">
+<div role="main">
+   <div class="container" ng-controller="CalendarCtrl as cal">
+      <section id="directives-calendar">
+         <div class="well">
+            <div class="row-fluid">
+               <div class="span4">
+                  <ul class="unstyled">
+                     <li ng-repeat="e in cal.events">
+                        <div class="alert alert-info">
+                           <a class="close" ng-click="cal.remove($index)"><i class="icon-remove"></i></a>
+                           <strong> <input ng-model="e.title"></strong>
+                           {{e.start | date:"MMM dd"}} - {{e.end | date:"MMM dd"}}
+                        </div>
+                     </li>
+                  </ul>
+               </div>
+               <div class="span8">
+                  <div class="alert-success calAlert" ng-show="cal.alertMessage != undefined && alertMessage != ''">
+                     <h4>{{cal.alertMessage}}</h4>
+                  </div>
+                  <div class="calendar" ng-model="cal.eventSources" calendar="myCalendar" config="cal.uiConfig.calendar"
+                       ui-calendar="cal.uiConfig.calendar"></div>
+               </div>
+            </div>
+         </div>
+      </section>
+   </div>
+</div>
+
+
+<script src="https://apis.google.com/js/client.js"></script>
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="../bower_components/angular/angular.js"></script>
+<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
+<script src="../bower_components/moment/moment.js"></script>
+<script src="../bower_components/fullcalendar/dist/fullcalendar.js"></script>
+<script src="../bower_components/fullcalendar/dist/gcal.js"></script>
+<script src="../src/calendar.js"></script>
+<script src="calendar.js"></script>
+<script src="calendarFactory.js"></script>
+<script type="text/javascript" src="../bower_components/fullcalendar/dist/lang-all.js"></script>
+</body>
+</html>
