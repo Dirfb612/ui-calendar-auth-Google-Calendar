@@ -21,7 +21,7 @@
       self.eventData = [];
 
       //Start the auth
-      checkAuth();
+      //checkAuth();
 
       //authorization in google
       function checkAuth() {
@@ -77,7 +77,12 @@
                "date": end.format()
             }
          };
-         calendarFactory.makeRpcRequest(self.eventData);
+
+         console.log('--- start.format ---');
+         console.log(start.format());
+         console.log('--- end format ---');
+         console.log(start.format());
+      //   calendarFactory.makeRpcRequest(self.eventData);
 
       }
 
