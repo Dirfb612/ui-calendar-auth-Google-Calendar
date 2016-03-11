@@ -12,7 +12,8 @@
       var self = this,
       //Global variables to access the calendar
          clientId = '1020443454327-r6ev6jep74mtqb1pp9aentg75v1l5j4n.apps.googleusercontent.com',
-         scopes = 'https://www.googleapis.com/auth/calendar';
+         scopes = 'https://www.googleapis.com/auth/calendar',
+         apiKey = 'AIzaSyDvbmZLQjDm_qrkvpUl1kTTMhDnpokNmrI';
 
       //Title of module
       self.title = 'Calendario';
@@ -21,7 +22,17 @@
       self.eventData = [];
 
       //Start the auth
+<<<<<<< HEAD
       //checkAuth();
+=======
+      handleClientLoad();
+
+      function handleClientLoad() {
+         gapi.client.setApiKey(apiKey);
+         window.setTimeout(checkAuth, 1);
+
+      }
+>>>>>>> test
 
       //authorization in google
       function checkAuth() {
@@ -37,21 +48,14 @@
       function handleAuthResult(authResult) {
 
          if (authResult && !authResult.error) {
+            console.log('--- loadCalendar ---');
+            console.log(authResult);
             calendarFactory.loadCalendarApi();
-         } else {
-            handleAuthClick();
-         }
-      }
 
-      //request credentials
-      function handleAuthClick() {
-         gapi.auth.authorize(
-            {
-               client_id: clientId,
-               scope: scopes,
-               immediate: false
-            }, handleAuthResult);
-         return false;
+         } else {
+            console.log('--- authResult ---');
+            console.log(authResult);
+         }
       }
 
       //Start Events
@@ -77,12 +81,18 @@
                "date": end.format()
             }
          };
+<<<<<<< HEAD
 
          console.log('--- start.format ---');
          console.log(start.format());
          console.log('--- end format ---');
          console.log(start.format());
       //   calendarFactory.makeRpcRequest(self.eventData);
+=======
+         calendarFactory.makeRpcRequest(self.eventData);
+         console.log('--- entro tarea ---');
+         console.log(self.eventData);
+>>>>>>> test
 
       }
 
@@ -111,6 +121,10 @@
          }
       };
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> test
       self.eventSources = [self.events];
    }
 

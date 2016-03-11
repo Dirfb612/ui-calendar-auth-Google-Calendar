@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="calendarDemoApp" id="top">
+<head>
+   <meta charset="UTF-8">
+   <title>AngularUI Calendar for AngularJS</title>
+   <link rel="icon" href="../favicon.ico"/>
+   <link rel="stylesheet" href="../../bower_components/bootstrap-css/css/bootstrap.css"/>
+   <link rel="stylesheet" href="../../bower_components/fullcalendar/dist/fullcalendar.css">
+   <link rel="stylesheet" href="calendarDemo.css"/>
+</head>
+<body data-spy="scroll">
+<div role="main">
+   <div class="container" ng-controller="CalendarCtrl as cal">
+
+      <div class="btn-toolbar">
+         <div class="btn-group">
+            <button class="btn btn-success" ng-click="cal.changeView('agendaDay', 'myCalendar')">Day</button>
+            <button class="btn btn-success" ng-click="cal.changeView('agendaWeek', 'myCalendar')">Week</button>
+            <button class="btn btn-success" ng-click="cal.changeView('month', 'myCalendar')">Month</button>
+            <button class="btn" ng-click="cal.addRemoveEventSource(cal.eventSources,cal.eventSource)">
+               Toggle Source
+            </button>
+         </div>
+      </div>
+      <div class="calendar" ng-model="cal.eventSources" calendar="myCalendar" config="cal.uiConfig.calendar"
+           ui-calendar="cal.uiConfig.calendar"></div>
+
+      <div class="alert-success calAlert" ng-show="cal.alertMessage != undefined && alertMessage != ''">
+         <h4>{{cal.alertMessage}}</h4>
+      </div>
+      <ul class="unstyled">
+         <li ng-repeat="e in cal.events | filter:currentDate">
+            <div class="alert alert-info">
+               <a class="close" ng-click="cal.remove($index)"><i class="icon-remove"></i></a>
+               <b> {{e.title}}</b> - {{e.start }}
+            </div>
+         </li>
+      </ul>
+
+   </div>
+</div>
+<script src="../../bower_components/jquery/dist/jquery.js"></script>
+<script src="../../bower_components/angular/angular.js"></script>
+<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
+<script src="../../bower_components/moment/moment.js"></script>
+<script src="../../bower_components/fullcalendar/dist/fullcalendar.js"></script>
+<script src="../../bower_components/fullcalendar/dist/gcal.js"></script>
+<script src="../../src/calendar.js"></script>
+<script src="calendarEjemplo2.js"></script>
+<script type="text/javascript" src="../../bower_components/fullcalendar/dist/lang-all.js"></script>
+</body>
+</html>
