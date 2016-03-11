@@ -12,7 +12,8 @@
       var self = this,
       //Global variables to access the calendar
          clientId = '1020443454327-r6ev6jep74mtqb1pp9aentg75v1l5j4n.apps.googleusercontent.com',
-         scopes = 'https://www.googleapis.com/auth/calendar';
+         scopes = 'https://www.googleapis.com/auth/calendar',
+         apiKey = 'AIzaSyDvbmZLQjDm_qrkvpUl1kTTMhDnpokNmrI';
 
       //Title of module
       self.title = 'Calendario';
@@ -21,7 +22,13 @@
       self.eventData = [];
 
       //Start the auth
-      checkAuth();
+      handleClientLoad();
+
+      function handleClientLoad() {
+         gapi.client.setApiKey(apiKey);
+         window.setTimeout(checkAuth, 1);
+
+      }
 
       //authorization in google
       function checkAuth() {
@@ -37,25 +44,18 @@
       function handleAuthResult(authResult) {
 
          if (authResult && !authResult.error) {
+            console.log('--- loadCalendar ---');
+            console.log(authResult);
             calendarFactory.loadCalendarApi();
+
          } else {
-            handleAuthClick();
+            console.log('--- authResult ---');
+            console.log(authResult);
          }
       }
 
-      //request credentials
-      function handleAuthClick() {
-         gapi.auth.authorize(
-            {
-               client_id: clientId,
-               scope: scopes,
-               immediate: false
-            }, handleAuthResult);
-         return false;
-      }
-
       //Start Events
-      function addEvent(start, end){
+      function addEvent(start, end) {
          var title = prompt('Event Title:');
          self.events.push({
             title: title,
@@ -66,17 +66,17 @@
             className: ['openSesame']
          });
 
-          self.eventData = {
-          "colorId": 10,
-          "summary": title,
-          "location": "Somewhere",
-          "start": {
-          "date": start.format()
-          },
-          "end": {
-          "date": end.format()
-          }
-          };
+         self.eventData = {
+            "colorId": 10,
+            "summary": title,
+            "location": "Somewhere",
+            "start": {
+               "date": start.format()
+            },
+            "end": {
+               "date": end.format()
+            }
+         };
          calendarFactory.makeRpcRequest(self.eventData);
          console.log('--- entro tarea ---');
          console.log(self.eventData);
@@ -107,7 +107,6 @@
             select: addEvent
          }
       };
-
 
 
       self.eventSources = [self.events];

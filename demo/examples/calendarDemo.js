@@ -36,12 +36,18 @@
       var scopes = 'https://www.googleapis.com/auth/calendar';
       //handleAuthResult();
 
+      handleClientLoad();
+
+      function handleClientLoad() {
+         gapi.client.setApiKey(apiKey);
+         window.setTimeout(checkAuth, 1);
+
+      }
 
       function checkAuth() {
 
          gapi.auth.authorize(
             {
-
                'client_id': clientId,
                'scope': scopes,
                'immediate': true
@@ -79,7 +85,7 @@
                });
             });
             var request1 = gapi.client.calendar.events.list({
-               'calendarId': 'qv8rv593gn5g8pumu0bid6bco0@group.calendar.google.com'
+               'calendarId': 'm8lu1jllnie840ei5lhlihr1tc@group.calendar.google.com'
             });
             request1.execute(function (resp) {
 

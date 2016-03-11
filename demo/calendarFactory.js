@@ -11,7 +11,7 @@
 
       //Global variables to access the calendar
       var requestList,
-         calendarId = 'qv8rv593gn5g8pumu0bid6bco0@group.calendar.google.com',
+         calendarId = 'm8lu1jllnie840ei5lhlihr1tc@group.calendar.google.com',
          eventsList = [],
          url,
          request;

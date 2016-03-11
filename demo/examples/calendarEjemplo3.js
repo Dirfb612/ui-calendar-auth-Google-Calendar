@@ -25,7 +25,23 @@
       var clientId = '1020443454327-r6ev6jep74mtqb1pp9aentg75v1l5j4n.apps.googleusercontent.com';
       var scopes = 'https://www.googleapis.com/auth/calendar';
 
+      handleClientLoad();
 
+      function handleClientLoad() {
+         gapi.client.setApiKey(apiKey);
+         window.setTimeout(checkAuth, 1);
+
+      }
+
+      function checkAuth() {
+
+         gapi.auth.authorize(
+            {
+               'client_id': clientId,
+               'scope': scopes,
+               'immediate': true
+            }, handleAuthResult);
+      }
 
       function handleAuthResult(authResult) {
          console.log(authResult);
@@ -62,7 +78,7 @@
                });
             });
             var request1 = gapi.client.calendar.events.list({
-               'calendarId': 'qv8rv593gn5g8pumu0bid6bco0@group.calendar.google.com'
+               'calendarId': 'm8lu1jllnie840ei5lhlihr1tc@group.calendar.google.com'
             });
             request1.execute(function (resp) {
                $.each(resp.items, function (key, value) {
@@ -141,7 +157,6 @@
       };
 
 
-
       function eventSources(eventsList) {
          console.log('--- entro ---');
          console.log(eventsList);
@@ -154,7 +169,7 @@
          //init();
       }
 
-     // $scope.eventSources =  [$scope.events];
+      // $scope.eventSources =  [$scope.events];
 
       //  $scope.eventSources2 = [$scope.calEventsExt, $scope.eventsF, $scope.events];
    }
