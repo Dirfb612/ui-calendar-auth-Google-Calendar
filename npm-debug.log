@@ -1,0 +1,91 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/diana/.nvm/versions/node/v5.0.0/bin/node',
+1 verbose cli   '/home/diana/.nvm/versions/node/v5.0.0/bin/npm',
+1 verbose cli   'i' ]
+2 info using npm@3.3.6
+3 info using node@v5.0.0
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly install normalizeTree
+8 silly loadCurrentTree Finishing
+9 silly loadIdealTree Starting
+10 silly install loadIdealTree
+11 silly cloneCurrentTree Starting
+12 silly install cloneCurrentTreeToIdealTree
+13 silly cloneCurrentTree Finishing
+14 silly loadShrinkwrap Starting
+15 silly install loadShrinkwrap
+16 silly loadShrinkwrap Finishing
+17 silly loadAllDepsIntoIdealTree Starting
+18 silly install loadAllDepsIntoIdealTree
+19 silly fetchNamedPackageData fsevents
+20 silly mapToRegistry name fsevents
+21 silly mapToRegistry using default registry
+22 silly mapToRegistry registry https://registry.npmjs.org/
+23 silly mapToRegistry uri https://registry.npmjs.org/fsevents
+24 verbose request uri https://registry.npmjs.org/fsevents
+25 verbose request no auth needed
+26 info attempt registry request try #1 at 5:38:40 PM
+27 verbose request id 055ba54ac8e4f1a4
+28 verbose etag "8PVGYBXJZ0N7A0VP5BLLIVEG2"
+29 http request GET https://registry.npmjs.org/fsevents
+30 http 304 https://registry.npmjs.org/fsevents
+31 verbose headers { date: 'Thu, 28 Apr 2016 22:38:41 GMT',
+31 verbose headers   via: '1.1 varnish',
+31 verbose headers   'cache-control': 'max-age=300',
+31 verbose headers   etag: '"8PVGYBXJZ0N7A0VP5BLLIVEG2"',
+31 verbose headers   age: '208',
+31 verbose headers   connection: 'keep-alive',
+31 verbose headers   'x-served-by': 'cache-iad2129-IAD',
+31 verbose headers   'x-cache': 'HIT',
+31 verbose headers   'x-cache-hits': '6',
+31 verbose headers   'x-timer': 'S1461883121.296896,VS0,VE0',
+31 verbose headers   vary: 'Accept-Encoding' }
+32 silly get cb [ 304,
+32 silly get   { date: 'Thu, 28 Apr 2016 22:38:41 GMT',
+32 silly get     via: '1.1 varnish',
+32 silly get     'cache-control': 'max-age=300',
+32 silly get     etag: '"8PVGYBXJZ0N7A0VP5BLLIVEG2"',
+32 silly get     age: '208',
+32 silly get     connection: 'keep-alive',
+32 silly get     'x-served-by': 'cache-iad2129-IAD',
+32 silly get     'x-cache': 'HIT',
+32 silly get     'x-cache-hits': '6',
+32 silly get     'x-timer': 'S1461883121.296896,VS0,VE0',
+32 silly get     vary: 'Accept-Encoding' } ]
+33 verbose etag https://registry.npmjs.org/fsevents from cache
+34 verbose get saving fsevents to /home/diana/.npm/registry.npmjs.org/fsevents/.cache.json
+35 silly resolveWithNewModule fsevents@0.3.8 checking installable status
+36 warn install Couldn't install optional dependency: Unsupported
+37 verbose install Error: Unsupported
+37 verbose install     at checkPlatform (/home/diana/.nvm/versions/node/v5.0.0/lib/node_modules/npm/node_modules/npm-install-checks/index.js:46:14)
+37 verbose install     at Array.<anonymous> (/home/diana/.nvm/versions/node/v5.0.0/lib/node_modules/npm/node_modules/slide/lib/bind-actor.js:15:8)
+37 verbose install     at LOOP (/home/diana/.nvm/versions/node/v5.0.0/lib/node_modules/npm/node_modules/slide/lib/chain.js:15:14)
+37 verbose install     at /home/diana/.nvm/versions/node/v5.0.0/lib/node_modules/npm/node_modules/slide/lib/chain.js:18:7
+37 verbose install     at checkEngine (/home/diana/.nvm/versions/node/v5.0.0/lib/node_modules/npm/node_modules/npm-install-checks/index.js:25:10)
+37 verbose install     at Array.<anonymous> (/home/diana/.nvm/versions/node/v5.0.0/lib/node_modules/npm/node_modules/slide/lib/bind-actor.js:15:8)
+37 verbose install     at LOOP (/home/diana/.nvm/versions/node/v5.0.0/lib/node_modules/npm/node_modules/slide/lib/chain.js:15:14)
+37 verbose install     at chain (/home/diana/.nvm/versions/node/v5.0.0/lib/node_modules/npm/node_modules/slide/lib/chain.js:20:5)
+37 verbose install     at module.exports.isInstallable (/home/diana/.nvm/versions/node/v5.0.0/lib/node_modules/npm/lib/install/validate-args.js:26:3)
+37 verbose install     at resolveWithNewModule (/home/diana/.nvm/versions/node/v5.0.0/lib/node_modules/npm/lib/install/deps.js:408:12)
+38 verbose stack TypeError: Cannot read property 'localeCompare' of undefined
+38 verbose stack     at installOrder (/home/diana/.nvm/versions/node/v5.0.0/lib/node_modules/npm/lib/install/deps.js:241:32)
+38 verbose stack     at Array.sort (native)
+38 verbose stack     at /home/diana/.nvm/versions/node/v5.0.0/lib/node_modules/npm/lib/install/deps.js:240:27
+38 verbose stack     at cb (/home/diana/.nvm/versions/node/v5.0.0/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+38 verbose stack     at resolveWithExistingModule (/home/diana/.nvm/versions/node/v5.0.0/lib/node_modules/npm/lib/install/deps.js:377:3)
+38 verbose stack     at /home/diana/.nvm/versions/node/v5.0.0/lib/node_modules/npm/lib/install/deps.js:347:5
+38 verbose stack     at /home/diana/.nvm/versions/node/v5.0.0/lib/node_modules/npm/node_modules/slide/lib/async-map.js:52:35
+38 verbose stack     at Array.forEach (native)
+38 verbose stack     at /home/diana/.nvm/versions/node/v5.0.0/lib/node_modules/npm/node_modules/slide/lib/async-map.js:52:11
+38 verbose stack     at Array.forEach (native)
+39 verbose cwd /home/diana/WebstormProjects/ui-calendar-auth-Google-Calendar
+40 error Linux 3.16.0-70-generic
+41 error argv "/home/diana/.nvm/versions/node/v5.0.0/bin/node" "/home/diana/.nvm/versions/node/v5.0.0/bin/npm" "i"
+42 error node v5.0.0
+43 error npm  v3.3.6
+44 error Cannot read property 'localeCompare' of undefined
+45 error If you need help, you may report this error at:
+45 error     <https://github.com/npm/npm/issues>
+46 verbose exit [ 1, true ]

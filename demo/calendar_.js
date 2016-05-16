@@ -5,13 +5,13 @@
       .module('calendarDemoApp', ['ui.calendar', 'ui.bootstrap'])
       .controller('CalendarCtrl', CalendarCtrl);
 
-   CalendarCtrl.$inject = ['calendarFactory'];
+   CalendarCtrl.$inject = ['calendarFactory', '$window'];
 
-   function CalendarCtrl(calendarFactory) {
+   function CalendarCtrl(calendarFactory, $window) {
 
       var self = this,
       //Global variables to access the calendar
-         clientId = '1020443454327-r6ev6jep74mtqb1pp9aentg75v1l5j4n.apps.googleusercontent.com',
+         clientId = 'm8lu1jllnie840ei5lhlihr1tc@group.calendar.google.com',
          scopes = 'https://www.googleapis.com/auth/calendar';
 
       //Title of module
@@ -21,11 +21,11 @@
       self.eventData = [];
 
       //Start the auth
-      //checkAuth();
+      checkAuth();
 
       //authorization in google
       function checkAuth() {
-         gapi.auth.authorize(
+         $window.gapi.auth.authorize(
             {
                'client_id': clientId,
                'scope': scopes,
@@ -45,7 +45,7 @@
 
       //request credentials
       function handleAuthClick() {
-         gapi.auth.authorize(
+         $window.gapi.auth.authorize(
             {
                client_id: clientId,
                scope: scopes,
@@ -82,7 +82,7 @@
          console.log(start.format());
          console.log('--- end format ---');
          console.log(start.format());
-      //   calendarFactory.makeRpcRequest(self.eventData);
+         //   calendarFactory.makeRpcRequest(self.eventData);
 
       }
 
@@ -93,8 +93,8 @@
             editable: true,
             //Header Calendar
             lang: 'es',
-            width: 1000,
-            height: 700,
+            //width: 1000,
+            //height: 700,
             header: {
                left: 'prev,next today',
                center: 'title',
