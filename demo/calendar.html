@@ -14,23 +14,10 @@
       <section id="directives-calendar">
          <div class="well">
             <div class="row-fluid">
-            <!--   <div class="span4">
-                  <ul class="unstyled">
-                     <li ng-repeat="e in cal.events">
-                        <div class="alert alert-info">
-                           <a class="close" ng-click="cal.remove($index)"><i class="icon-remove"></i></a>
-                           <strong> <input ng-model="e.title"></strong>
-                           {{e.start | date:"MMM dd"}} - {{e.end | date:"MMM dd"}}
-                        </div>
-                     </li>
-                  </ul>
-               </div>-->
 
                <div class="alert-success calAlert" ng-show="cal.alertMessage != undefined && alertMessage != ''">
-                  <h4>{{cal.alertMessage}}</h4>
+                  <h4 ng-bind="cal.alertMessage"></h4>
                </div>
-               <!--     <div class="calendar" ng-model="cal.eventSources" calendar="myCalendar" config="cal.uiConfig.calendar"
-                         ui-calendar="cal.uiConfig.calendar"></div>-->
 
                <div class="calendar" ng-model="cal.eventSources" calendar="myCalendar" config="cal.uiConfig.calendar"
                     ui-calendar="cal.uiConfig.calendar"></div>

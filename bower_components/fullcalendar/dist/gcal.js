@@ -142,9 +142,9 @@
 						var url = entry.htmlLink || null;
 						
 						// make the URLs for each event show times in the correct timezone
-						if (timezoneArg && url !== null) {
+				/*		if (timezoneArg && url !== null) {
 							url = injectQsComponent(url, 'ctz=' + timezoneArg);
-						}
+						}*/
 						
 						events.push({
 							id: entry.id,
