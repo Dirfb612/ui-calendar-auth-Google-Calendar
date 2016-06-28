@@ -32,14 +32,20 @@
       }
 
 
-      function makeApiCall() {
+      function makeApiCall(start, end) {
+         
+         console.log('--- start ---');
+         console.log(start);
+         console.log('--- end ---');
+         console.log(end);
          //insert into calendar
 
          requestList = gapi.client.calendar.events.list({
             'key': apiKey,
             'calendarId': calendarId,
-            'timeMin': (new Date()).toISOString(),
-            'showDeleted': false,
+            //'timeMin': (new Date()).toISOString(),
+           // 'timeMax': (new Date()).toISOString(),
+            //'showDeleted': false,
             'singleEvents': true,
             'maxResults': 9999,
             'orderBy': 'startTime'
